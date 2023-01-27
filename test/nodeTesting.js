@@ -1,7 +1,8 @@
 const assert = require('assert');
-const Node = require('./node/Node.js');
+const Node = require('../node/Node.js');
 
 describe('NodeTesting', () => {
+    
     describe('Node - Data integrity test', () => {
         it('Data Integrity - Passing', () => {
             const testNodePassing = new Node('Juan Ramirez');

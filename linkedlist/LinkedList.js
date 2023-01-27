@@ -1,12 +1,13 @@
-const Node = require("./node/Node.js");
+const Node = require("../node/Node.js");
 
 module.exports = class LinkedList {
     constructor() {
-        // Used to track the head and tail of the bidirectional list
+        // Used to track the head and tail of the bidirectional list (doubley linked list).
         this.head = null;
         this.tail = null;
     }
 
+    // Adds a new node to the beginning (head) of the list.
     addToHead(data) {
         const newHead = new Node(data);
         const currentHead = this.head;
@@ -23,7 +24,7 @@ module.exports = class LinkedList {
         }
     }
 
-
+    // Adds a new node to the end (tail) of the list.
     addToTail(data) {
         const newTail = new Node(data);
         const currentTail = this.tail;
@@ -40,6 +41,7 @@ module.exports = class LinkedList {
         }
     }
     
+    // Removes a node from the begining (head) of the list.
     removeHead() {
         const removedHead = this.head;
 
@@ -60,6 +62,7 @@ module.exports = class LinkedList {
         return removedHead.data;
     }
     
+    // Removes a node from the end (tail) of the list.
     removeTail() {
         const removedTail = this.tail;
 
@@ -80,6 +83,7 @@ module.exports = class LinkedList {
         return removedTail.data;
     }
     
+    // Finds and removes a specific node by its data.
     removeByData(data) {
         let nodeToRemove;
         let currentNode = this.head;
@@ -112,6 +116,7 @@ module.exports = class LinkedList {
         return nodeToRemove;
     }
     
+    // A function that allows for the printing of every node and its data.
     printList() {
         let currentNode = this.head;
         let output = '<head> ';
@@ -124,6 +129,26 @@ module.exports = class LinkedList {
         output += '<tail>';
         console.log(output);
     }
-    
+
+    findNodeIteratively(data) {
+      let currentNode = this.head;
+      while (currentNode !== null) {
+        if (currentNode.data === data) {
+          return currentNode;
+        }
+        currentNode = currentNode.next;
+      }
+      return null;
+    }
+
+    findNodeRecursively(data, currentNode = this.head) {
+      if (currentNode === null) {
+        return null;
+      } else if (currentNode.data === data) {
+        return currentNode;
+      } else {
+        return this.findNodeRecursively(data, currentNode.next);
+      }
+    }
 }
 
